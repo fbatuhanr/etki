@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "etki",
-    "slug": "etki",
-    "version": "1.0.0",
+    "name": "Etki",
+    "slug": "Etki",
+    "version": "0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -32,7 +32,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
