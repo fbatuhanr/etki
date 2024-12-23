@@ -1,42 +1,44 @@
-import { useCallback } from 'react';
+import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Stack } from 'expo-router/stack';
 
 import * as SplashScreen from 'expo-splash-screen';
-import { Nunito_400Regular, Nunito_700Bold, useFonts } from '@expo-google-fonts/nunito';
+import { useFonts } from 'expo-font';
+import { Nunito_400Regular, Nunito_500Medium, Nunito_500Medium_Italic, Nunito_600SemiBold, Nunito_700Bold } from '@expo-google-fonts/nunito';
+
+import '../global.css';
 
 SplashScreen.preventAutoHideAsync();
 
-export default function Layout() {
+export default function RootLayout() {
 
   const [fontsLoaded] = useFonts({
     Nunito_400Regular,
+    Nunito_500Medium_Italic,
     Nunito_700Bold,
   });
 
-  const onLayoutRootView = useCallback(async () => {
+  useEffect(() => {
     if (fontsLoaded) {
-      await SplashScreen.hideAsync();
+      SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
 
   if (!fontsLoaded) {
-    return <Text>loading...</Text>;
+    return null;
   }
 
   return (
-    <View style={styles.container} onLayout={onLayoutRootView}>
+    <View style={styles.container}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#F8F9FA',
   },
 });
