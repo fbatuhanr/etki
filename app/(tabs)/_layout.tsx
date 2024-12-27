@@ -1,6 +1,8 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
 import { Image, StyleSheet, Text, View } from 'react-native';
+import { COLORS } from '../constants/colors';
+import { FONTS } from '../constants/fonts';
 
 export default function TabLayout() {
     return (
@@ -32,19 +34,17 @@ export default function TabLayout() {
 
 const styles = StyleSheet.create({
     tabScene: {
-        backgroundColor: '#F8F9FA',
-        paddingLeft: 20,
-        paddingRight: 20
+        backgroundColor: COLORS.whitish,
     },
     tabBar: {
         position: 'relative',
-        backgroundColor: '#007BFF',
+        backgroundColor: COLORS.primary,
         borderTopLeftRadius: 14,
         borderTopRightRadius: 14
     },
     tabBarLabel: {
-        color: '#FFFFFF',
-        fontFamily: 'Nunito_700Bold'
+        color: COLORS.white,
+        fontFamily: FONTS.bold
     },
     tabBarIcon: {
         width: 25,
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         zIndex: -1,
     },
     activeText: {
-        color: '#007aff',
+        color: COLORS.primary,
         fontWeight: 'bold',
     },
     inactiveText: {
