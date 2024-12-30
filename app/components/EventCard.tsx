@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Image, ImageSourcePropType, TouchableOpacity } from 'react-native';
-import LocationIcon from '../components/icons/LocationIcon';
-import { DateBackground, FavIcon, LineIcon } from './Vectors';
+import { DateBackground, LocationIcon, FavIcon, LineIcon } from './Vectors';
 import NuText from '../components/NuText';
 import { Link } from 'expo-router';
 

@@ -3,30 +3,73 @@ import { Tabs } from 'expo-router';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { COLORS } from '../constants/colors';
 import { FONTS } from '../constants/fonts';
+import { ActiveTab, CreateIcon, ProfileIcon, UpArrowIcon } from '../components/Vectors';
+import NuText from '../components/NuText';
 
 export default function TabLayout() {
     return (
         <Tabs screenOptions={({ route }) => ({
             sceneStyle: styles.tabScene,
             tabBarStyle: styles.tabBar,
-            tabBarLabelStyle: styles.tabBarLabel,
-            tabBarIconStyle: styles.tabBarIcon,
-            headerShown: false,
-            tabBarIcon: ({ focused }) => (
-                <View style={styles.iconWrapper}>
-                    {focused && <View style={styles.activeBg} />}
-                    <Text style={focused ? styles.activeText : styles.inactiveText}>
-                        <Image
-                            source={require('@/assets/icons/up-arrow.png')}
-                            style={styles.tabBarIcon}
-                        />
-                    </Text>
-                </View>
-            ),
+            headerShown: false
         })}>
-            <Tabs.Screen name="index" options={{ title: 'Attend' }} />
-            <Tabs.Screen name="create" options={{ title: 'Create' }} />
-            <Tabs.Screen name="profile" options={{ title: 'Profile' }} />
+            <Tabs.Screen name="index" options={{
+                title: 'ATTEND',
+                tabBarLabel: ({ focused }) =>
+                    <View className={focused ? '-mt-2' : ''}>
+                        <NuText variant='extraBold' className='text-base text-white tracking-wider'>ATTEND</NuText>
+                    </View>,
+                tabBarIcon: ({ focused }) =>
+                    <View className='relative justify-center items-center'>
+                        {
+                            focused &&
+                            <View className='absolute -bottom-14 -mb-2.5'>
+                                <ActiveTab width={138} height={114} />
+                            </View>
+                        }
+                        <View className={focused ? '-mt-4' : ''}>
+                            <UpArrowIcon width={36} height={36} />
+                        </View>
+                    </View>,
+            }} />
+            <Tabs.Screen name="create" options={{
+                title: 'CREATE',
+                tabBarLabel: ({ focused }) =>
+                    <View className={focused ? '-mt-2' : ''}>
+                        <NuText variant='extraBold' className='text-base text-white tracking-wider'>CREATE</NuText>
+                    </View>,
+                tabBarIcon: ({ focused }) =>
+                    <View className='relative justify-center items-center'>
+                        {
+                            focused &&
+                            <View className='absolute -bottom-14 -mb-4'>
+                                <ActiveTab width={138} height={114} />
+                            </View>
+                        }
+                        <View className={focused ? '-mt-4' : ''}>
+                            <CreateIcon width={26} height={26} viewBox='0 0 24 24' />
+                        </View>
+                    </View>
+            }} />
+            <Tabs.Screen name="profile" options={{
+                title: 'PROFILE',
+                tabBarLabel: ({ focused }) =>
+                    <View className={focused ? '-mt-2' : ''}>
+                        <NuText variant='extraBold' className='text-base text-white tracking-wider'>PROFILE</NuText>
+                    </View>,
+                tabBarIcon: ({ focused }) =>
+                    <View className='relative justify-center items-center'>
+                        {
+                            focused &&
+                            <View className='absolute -bottom-14 -mb-4'>
+                                <ActiveTab width={138} height={114} />
+                            </View>
+                        }
+                        <View className={focused ? '-mt-4' : ''}>
+                            <ProfileIcon width={24} height={24} />
+                        </View>
+                    </View>
+            }} />
         </Tabs>
     );
 }
@@ -39,37 +82,7 @@ const styles = StyleSheet.create({
     tabBar: {
         position: 'relative',
         backgroundColor: COLORS.primary,
-        borderTopLeftRadius: 14,
-        borderTopRightRadius: 14
-    },
-    tabBarLabel: {
-        color: COLORS.white,
-        fontFamily: FONTS.bold
-    },
-    tabBarIcon: {
-        width: 25,
-        height: 25,
-        resizeMode: 'contain',
-    },
-    iconWrapper: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'relative',
-    },
-    activeBg: {
-        position: 'absolute',
-        width: 114,
-        height: 114,
-        backgroundColor: '#007BFF',
-        borderRadius: 999,
-        top: -25,
-        zIndex: -1,
-    },
-    activeText: {
-        color: COLORS.primary,
-        fontWeight: 'bold',
-    },
-    inactiveText: {
-        color: '#8e8e93',
-    },
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16
+    }
 });

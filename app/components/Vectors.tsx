@@ -1,6 +1,16 @@
 import * as React from "react";
 import Svg, { SvgProps, G, Path, Defs, ClipPath } from "react-native-svg"
 
+const ActiveTab = (props: SvgProps) => (
+  <Svg fill="none" {...props}>
+    <Path
+      fill="#007BFF"
+      fillRule="evenodd"
+      d="M13.31 25c4.323 0 8.302-2.172 11.2-5.381C35.367 7.599 51.368 0 69.215 0c17.898 0 33.943 7.645 44.8 19.727 2.829 3.148 6.725 5.273 10.958 5.273C132.167 25 138 30.833 138 38.028V100c0 7.732-6.268 14-14 14H14c-7.732 0-14-6.268-14-14V38.31C0 30.958 5.959 25 13.31 25Z"
+      clipRule="evenodd"
+    />
+  </Svg>
+);
 const LogoDoubleRing = (props: SvgProps) => (
   <Svg fill="none" {...props}>
     <G clipPath="url(#a)">
@@ -121,6 +131,41 @@ const DateDetailBackground = (props: SvgProps) => (
     />
   </Svg>
 );
+const UpArrowIcon = (props: SvgProps) => (
+  <Svg fill="none" {...props}>
+    <Path
+      stroke="#fff"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeMiterlimit={10}
+      strokeWidth={2}
+      d="M13.995 27C9.03 27 6.99 23.475 9.48 19.17l4.02-6.93c2.49-4.305 6.555-4.305 9.045 0l4.02 6.93c2.49 4.305.45 7.83-4.515 7.83h-8.055Z"
+    />
+  </Svg>
+);
+const CreateIcon = (props: SvgProps) => (
+  <Svg fill="none" {...props}>
+    <Path
+      stroke="#F8F9FA"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={3.5}
+      d="M12 5v14m-7-7h14"
+    />
+  </Svg>
+);
+const ProfileIcon = (props: SvgProps) => (
+  <Svg fill="none" {...props}>
+    <Path
+      stroke="#F8F9FA"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M20.59 22c0-3.87-3.85-7-8.59-7s-8.59 3.13-8.59 7M17 7A5 5 0 1 1 7 7a5 5 0 0 1 10 0Z"
+    />
+  </Svg>
+);
+
 const BackIcon = (props: SvgProps) => (
   <Svg fill="none" {...props}>
     <Path
@@ -241,7 +286,9 @@ const WarningIcon = (props: SvgProps) => (
 );
 
 export {
+  ActiveTab,
   LogoDoubleRing, LogoDoubleOffsetRing, LogoMultipleRing,
   DateBackground, DateDetailBackground,
+  UpArrowIcon, CreateIcon, ProfileIcon,
   BackIcon, FavIcon, ShareIcon, LineIcon, LocationIcon, SearchIcon, CalendarIcon, TimerIcon, ParticipantsIcon, LocationDetailIcon, WarningIcon
 };
