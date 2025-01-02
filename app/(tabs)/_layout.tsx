@@ -23,7 +23,7 @@ export default function TabLayout() {
                     <View className='relative justify-center items-center'>
                         {
                             focused &&
-                            <View className='absolute -bottom-14 -mb-2.5'>
+                            <View className='absolute -bottom-[59px]'>
                                 <ActiveTab width={138} height={114} />
                             </View>
                         }
@@ -42,7 +42,7 @@ export default function TabLayout() {
                     <View className='relative justify-center items-center'>
                         {
                             focused &&
-                            <View className='absolute -bottom-14 -mb-4'>
+                            <View className='absolute -bottom-[63.5px]'>
                                 <ActiveTab width={138} height={114} />
                             </View>
                         }
@@ -61,7 +61,7 @@ export default function TabLayout() {
                     <View className='relative justify-center items-center'>
                         {
                             focused &&
-                            <View className='absolute -bottom-14 -mb-4'>
+                            <View className='absolute -bottom-[64.5px]'>
                                 <ActiveTab width={138} height={114} />
                             </View>
                         }
@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
         position: 'relative',
         backgroundColor: COLORS.primary,
         borderTopLeftRadius: 16,
-        borderTopRightRadius: 16
+        borderTopRightRadius: 16,
+        paddingTop:3
     }
 });

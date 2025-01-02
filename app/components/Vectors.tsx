@@ -1,10 +1,11 @@
 import * as React from "react";
 import Svg, { SvgProps, G, Path, Defs, ClipPath } from "react-native-svg"
+import COLORS from "../constants/colors";
 
 const ActiveTab = (props: SvgProps) => (
   <Svg fill="none" {...props}>
     <Path
-      fill="#007BFF"
+      fill={COLORS.primary}
       fillRule="evenodd"
       d="M13.31 25c4.323 0 8.302-2.172 11.2-5.381C35.367 7.599 51.368 0 69.215 0c17.898 0 33.943 7.645 44.8 19.727 2.829 3.148 6.725 5.273 10.958 5.273C132.167 25 138 30.833 138 38.028V100c0 7.732-6.268 14-14 14H14c-7.732 0-14-6.268-14-14V38.31C0 30.958 5.959 25 13.31 25Z"
       clipRule="evenodd"
@@ -166,10 +167,10 @@ const ProfileIcon = (props: SvgProps) => (
   </Svg>
 );
 
-const BackIcon = (props: SvgProps) => (
-  <Svg fill="none" {...props}>
+const BackIcon: React.FC<{ isFilled?: boolean, strokeColor?: string } & SvgProps> = ({ isFilled, strokeColor, ...props }) => (
+  <Svg fill={isFilled ? (strokeColor ? strokeColor : '#FFFFFF') : '#00000000'} {...props}>
     <Path
-      stroke="#FFFFFF"
+      stroke={strokeColor ? strokeColor : '#FFFFFF'}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={3}

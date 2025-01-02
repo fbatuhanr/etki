@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput, Modal } from 'react-native';
 import { COLORS } from '../constants/colors';
 import EventCard from '../components/EventCard';
 import NuText from '../components/NuText';
@@ -11,11 +11,12 @@ import { sampleEvents, sampleEventTypes } from '../data/sample';
 import EventType from '../components/EventType';
 import FONTS from '../constants/fonts';
 import { LogoMultipleRing, SearchIcon, CalendarIcon } from '../components/Vectors';
+import { router } from 'expo-router';
 
 const Attend = () => {
 
   const [date, setDate] = useState(new Date());
-  const [mode, setMode] = useState<'date' | 'time'>('date');
+  const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
 
   const onChange = (event: any, selectedDate?: Date) => {
@@ -30,10 +31,29 @@ const Attend = () => {
     setShow(true);
   };
 
-  const showTimepicker = () => {
-    setMode('time');
-    setShow(true);
-  };
+  const [search, setSearch] = useState({
+    isEnabled: false,
+    isFocused: false,
+    query: ''
+  });
+  const searchInputRef = useRef<TextInput>(null);
+
+  useEffect(() => {
+    if (search.isEnabled) {
+      searchInputRef.current?.focus();
+    }
+  }, [search.isEnabled]);
+
+
+  const [calendar, setCalendar] = useState({
+    isModalVisible: false,
+    value: ''
+  });
+  useEffect(() => {
+    if (!calendar.value) return;
+
+    // alert(`value changed: ${calendar.value}`);
+  }, [calendar.value])
 
   return (
     <SafeAreaView>
@@ -46,13 +66,50 @@ const Attend = () => {
         </View>
 
         <View className='h-11 pr-5 flex-row gap-x-0.5'>
-          <View className='flex-1 flex-row items-center gap-x-2 bg-primary px-4 rounded-tl-[10px] rounded-bl-[10px]'>
-            <SearchIcon width={22} height={22} />
-            <NuText variant='bold' className='text-base text-white'>Search</NuText>
-          </View>
-          <View className='flex-1 flex-row items-center gap-x-2 bg-primary px-4 rounded-tr-[10px] rounded-br-[10px]'>
-            <CalendarIcon width={22} height={22} />
-            <NuText variant='bold' className='text-base text-white'>Search</NuText>
+          <TouchableOpacity
+            onPress={() => setSearch((prev) => ({ ...prev, isEnabled: !prev.isEnabled }))}
+            className="flex-1 flex-row items-center gap-x-2 bg-primary px-4 rounded-tl-[10px] rounded-bl-[10px]"
+          >
+            <View><SearchIcon width={22} height={22} /></View>
+            <TextInput
+              ref={searchInputRef}
+              className="flex-1 text-base font-nunitoBold text-white"
+              placeholder={search.isFocused ? "Search..." : "Search"}
+              placeholderTextColor={search.isFocused ? COLORS.greyish : COLORS.white}
+              value={search.query}
+              onChangeText={(text) => setSearch((prev) => ({ ...prev, query: text }))}
+              onFocus={() => setSearch((prev) => ({ ...prev, isFocused: true }))}
+              onBlur={() => setSearch((prev) => ({ ...prev, isEnabled: false, isFocused: false }))}
+              onSubmitEditing={() => router.push(`/filters/search?query=${search.query}`)}
+            />
+          </TouchableOpacity>
+          <View className='flex-1 relative z-10'>
+            <TouchableOpacity onPress={() => setCalendar((prev) => ({ ...prev, isModalVisible: !prev.isModalVisible }))} className='flex-1 flex-row items-center gap-x-2 bg-primary px-4 rounded-tr-[10px] rounded-br-[10px]'>
+              <CalendarIcon width={22} height={22} />
+              <NuText variant='bold' className='text-white text-base'>{calendar.value ? calendar.value : 'Date'}</NuText>
+            </TouchableOpacity>
+            {
+              <Modal visible={calendar.isModalVisible} transparent={false} animationType='slide' onRequestClose={() => setCalendar((prev) => ({ ...prev, isModalVisible: !prev.isModalVisible }))}>
+                <View className='absolute top-12 left-0 min-w-full gap-y-0.5'>
+                  <TouchableOpacity onPress={() => setCalendar({ value: date.toString(), isModalVisible: false })} className='bg-primary rounded px-2 py-2'>
+                    <DateTimePicker
+                      value={date}
+                      mode='date'
+                      onChange={onChange}
+                    />
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => setCalendar({ value: 'Today', isModalVisible: false })} className='bg-primary rounded px-2 py-2'>
+                    <NuText variant='bold' className='text-base text-white'>Today</NuText>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => setCalendar({ value: 'Tomorrow', isModalVisible: false })} className='bg-primary rounded px-2 py-2'>
+                    <NuText variant='semiBold' className='text-white'>Tomorrow</NuText>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => setCalendar({ value: 'This Weekend', isModalVisible: false })} className='bg-primary rounded px-2 py-2'>
+                    <NuText variant='semiBold' className='text-white'>This Weekend</NuText>
+                  </TouchableOpacity>
+                </View>
+              </Modal>
+            }
           </View>
         </View>
 
@@ -73,7 +130,7 @@ const Attend = () => {
           <View className='mt-8'>
             <View className='mb-2 mr-6 flex-row justify-between'>
               <NuText variant='extraBold' className='text-4xl'>Featured Events</NuText>
-              <NuLink href='/' variant='regular' className='text-2xl text-grayish'>All</NuLink>
+              <NuLink href='/filters' variant='regular' className='text-2xl text-grayish'>All</NuLink>
             </View>
             <FlatList
               data={sampleEvents}
@@ -104,19 +161,3 @@ const Attend = () => {
   );
 }
 export default Attend;
-
-
-{/* <SafeAreaView>
-        <Button onPress={showDatepicker} title="Show date picker!" />
-        <Button onPress={showTimepicker} title="Show time picker!" />
-        <Text>selected: {date.toLocaleString()}</Text>
-        {show && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode={mode}
-            is24Hour={true}
-            onChange={onChange}
-          />
-        )}
-      </SafeAreaView> */}

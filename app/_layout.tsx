@@ -11,7 +11,6 @@ import {
   Nunito_700Bold,
   Nunito_800ExtraBold,
 } from '@expo-google-fonts/nunito';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import '../global.css';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -47,6 +46,7 @@ export default function RootLayout() {
       <StatusBar style="dark" />
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="filters" options={{ title: 'Filtered by' }} />
         <Stack.Screen name="+not-found" options={{ title: 'Page Not Found' }} />
       </Stack>
     </GestureHandlerRootView>
