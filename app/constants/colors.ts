@@ -1,7 +1,11 @@
 export const COLORS = {
   primary: '#007BFF', // blue
   primaryActive: '#0062CB', // dark blue
+
   secondary: '#FF9900', // orange 
+  secondaryActive: '#EB8D00', // dark orange 
+  secondaryPressable: '#FCA219', // light orange
+  
   tertiary: '#34A853', // green
   quaternary: '#FF5722', // red
   quintuple: '#FFD700', // yellow

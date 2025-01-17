@@ -46,7 +46,6 @@ export default function RootLayout() {
       <StatusBar style="dark" />
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="filters" options={{ title: 'Filtered by' }} />
         <Stack.Screen name="+not-found" options={{ title: 'Page Not Found' }} />
       </Stack>
     </GestureHandlerRootView>
