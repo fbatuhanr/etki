@@ -144,10 +144,10 @@ const UpArrowIcon = (props: SvgProps) => (
     />
   </Svg>
 );
-const CreateIcon = (props: SvgProps) => (
+const CreateIcon: React.FC<{ strokeColor?: string } & SvgProps> = ({ strokeColor, ...props }) => (
   <Svg fill="none" {...props}>
     <Path
-      stroke="#F8F9FA"
+      stroke={strokeColor ? strokeColor : '#F8F9FA'}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={3.5}

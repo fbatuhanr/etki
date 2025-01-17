@@ -1,14 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, TouchableOpacity, TextInput, Modal } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 import { Link, router, Slot } from 'expo-router';
-import DateTimePicker from '@react-native-community/datetimepicker';
 
-import EventCard from '../../components/EventCard';
 import NuText from '../../components/NuText';
-import NuLink from '../../components/NuLink';
-import EventType from '../../components/EventType';
 import { LogoMultipleRing, SearchIcon, CalendarIcon, BackIcon } from '../../components/Vectors';
 
 // import Animated, { useSharedValue, withSpring } from 'react-native-reanimated';
