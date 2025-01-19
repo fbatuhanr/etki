@@ -51,6 +51,7 @@
     "runtimeVersion": "1.0.0",
     "updates": {
       "url": "https://u.expo.dev/42b5ebb1-ac37-4ac7-bb2f-11dd2d49c63c"
-    }
+    },
+    "owner": "fbatuhanr"
   }
 }
