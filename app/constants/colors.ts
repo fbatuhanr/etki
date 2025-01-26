@@ -10,6 +10,7 @@ export const COLORS = {
   quaternary: '#FF5722', // red
   quintuple: '#FFD700', // yellow
 
+  whietish: '#E3E4E6',  // close to white (more gray)
   whitish: '#F8F9FA',  // close to white
   white: '#FFFFFF', // white
 

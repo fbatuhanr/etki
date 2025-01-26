@@ -34,10 +34,6 @@ const filterOptions: FilterOptions = {
         return acc;
     }, {} as { [key: string]: string })
 }
-
-type filterProps = {
-
-}
 const FiltersLayout = () => {
 
     const { query, sortBy, type, dateLabel, startDate, endDate } = useLocalSearchParams();

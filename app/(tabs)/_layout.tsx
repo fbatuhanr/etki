@@ -87,13 +87,15 @@ export default TabLayout;
 
 const styles = StyleSheet.create({
     tabScene: {
-        backgroundColor: COLORS.whitish,
+        backgroundColor: COLORS.whitish
     },
     tabBar: {
+        marginTop: -20,
         position: 'relative',
         backgroundColor: COLORS.primary,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
-        paddingTop: 3
+        paddingTop: 3,
+        borderTopWidth: 0
     }
 });
